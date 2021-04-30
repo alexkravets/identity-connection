@@ -1,5 +1,5 @@
 {
-  "name": "identity-connection",
+  "name": "@kravc/identity-connection",
   "version": "0.1.0",
   "description": "This library implements request/response exchange for Verifiable Credentials.",
   "keywords": [
