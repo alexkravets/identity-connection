@@ -3,8 +3,11 @@
 const verifyRequest    = require('./verifyRequest')
 const matchCredentials = require('./matchCredentials')
 
-const matchRequest = async (request, credentials = []) => {
-  const { inputs } = await verifyRequest(request)
+const matchRequest = async (requestJwt, credentials = []) => {
+  const [ , request ]  = await verifyRequest(requestJwt)
+  const { inputsJson } = request
+
+  const inputs = JSON.parse(inputsJson)
 
   return matchCredentials(inputs, credentials)
 }

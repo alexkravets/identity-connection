@@ -1,15 +1,19 @@
 'use strict'
 
-const matchRequest     = require('./matchRequest')
-const Requirements     = require('./Requirements')
-const createRequest    = require('./createRequest')
-const verifyRequest    = require('./verifyRequest')
-const matchCredentials = require('./matchCredentials')
+const generateSeed               = require('./generateSeed')
+const matchRequest               = require('./matchRequest')
+const verifyRequest              = require('./verifyRequest')
+const matchCredentials           = require('./matchCredentials')
+const createConnectionRequest    = require('./createConnectionRequest')
+const createRequestCredential    = require('./createRequestCredential')
+const createConnectionCredential = require('./createConnectionCredential')
 
 module.exports = {
+  generateSeed,
   matchRequest,
-  Requirements,
-  createRequest,
   verifyRequest,
-  matchCredentials
+  matchCredentials,
+  createConnectionRequest,
+  createRequestCredential,
+  createConnectionCredential
 }
