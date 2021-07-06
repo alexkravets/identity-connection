@@ -10,7 +10,7 @@ const HOLDER_KEY   = [ 'https://www.w3.org/2018/credentials#holder', '@id' ]
 const SUBJECT_PATH = [ 'https://www.w3.org/2018/credentials#credentialSubject' ]
 
 const matchCredentials = async (inputs, credentials = [], holder = null) => {
-  const result = {}
+  const result = []
 
   const credentialsMap       = {}
   const credentialsCompacted = []
@@ -37,21 +37,17 @@ const matchCredentials = async (inputs, credentials = [], holder = null) => {
   }
 
   for (const input of inputs) {
-    const { key, path, issuer, isRequired } = input
-    result[key] = result[key] ? result[key] : { isRequired: false, options: [] }
-    result[key].isRequired = result[key].isRequired || isRequired
+    const { path, issuer } = input
 
     const [ credentials, values ] = match(path, issuer)
 
     const hasMatchedCredentials = credentials.length > 0
 
-    if (hasMatchedCredentials) {
-      result[key].options.push({
-        input,
-        values,
-        credentials
-      })
+    if (!hasMatchedCredentials) {
+      continue
     }
+
+    result.push({ ...input, values, credentials })
   }
 
   return result

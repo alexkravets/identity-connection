@@ -1,5 +1,6 @@
 'use strict'
 
+// TODO: Consider presentation expiration:
 const createConnectionRequest = async (identity, connectionCredential, requestCredential) => {
   const credentials = [
     connectionCredential,
