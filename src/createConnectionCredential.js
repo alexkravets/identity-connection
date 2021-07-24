@@ -1,5 +1,6 @@
 'use strict'
 
+const requestManifestSchema         = require('./requestManifestSchema')
 const { Schema, CredentialFactory } = require('@kravc/schema')
 
 const connectionSchema = new Schema({
@@ -30,11 +31,14 @@ const connectionSchema = new Schema({
     default:  'Service',
     example:  'Game',
     required: true
+  },
+  requestManifest: {
+    $ref: 'RequestManifest'
   }
 }, 'Connection')
 
 const createConnectionCredential = (baseUrl, id, holder, connection = {}) => {
-  const factory    = new CredentialFactory(`${baseUrl}ConnectionV1`, [ connectionSchema ])
+  const factory    = new CredentialFactory(`${baseUrl}ConnectionV1`, [ connectionSchema, requestManifestSchema ])
   const credential = factory.createCredential(id, holder, connection)
 
   return credential
