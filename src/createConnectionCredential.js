@@ -23,10 +23,9 @@ const connectionSchema = new Schema({
   },
   category: {
     enum: [
-      'Game',
-      'Person',
-      'Service',
-      'Organization'
+      'Games',
+      'Services',
+      'Organizations'
     ],
     default:  'Service',
     example:  'Game',
