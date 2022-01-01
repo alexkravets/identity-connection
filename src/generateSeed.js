@@ -4,7 +4,8 @@ const crypto       = require('crypto')
 const { Identity } = require('@kravc/identity')
 
 const generateSeed = () => {
-  return crypto.randomBytes(Identity.SEED_LENGTH).toString('hex')
+  const identity = Identity.generate(crypto.randomBytes)
+  return identity.privateKey
 }
 
 module.exports = generateSeed
